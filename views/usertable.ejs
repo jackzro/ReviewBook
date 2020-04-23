@@ -8,6 +8,7 @@
             <th scope="col">Name</th>
             <th scope="col">Username</th>
             <th scope="col">Email</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -16,6 +17,9 @@
             <th scope="col"><%= data[i].name%></th>
             <th scope="col"><%= data[i].username%></th>
             <th scope="col"><%= data[i].email%></th>
+            <th>
+              <a class="btn btn-primary" href="/user/seereview/<%= data[i].id%>">See Review</a>
+            </th>
         </tr>
          <% } %>
         </tbody>

@@ -10,5 +10,7 @@ const userController=require('../controller/userController')
 // }
 
 router.get('/', userController.show)
+router.get('/seereview/:id', userController.seereview)
+router.get('/seereview/:book/delete/:user', userController.delete)
 
 module.exports=router
