@@ -1,4 +1,4 @@
-const {User,Book}=require('../models')
+const {User,Book,UserBook}=require('../models')
 // const bcrypt = require('bcryptjs')
 
 class BookController{
@@ -73,6 +73,35 @@ class BookController{
         .then((()=>{
             res.redirect('/book')
         })).catch((err=>{
+            res.send(err)
+        }))
+    }
+
+    static addreview(req,res){
+        Book.findOne({
+            where:{
+                id:Number(req.params.id)
+            }
+        })
+        .then(data=>{
+            res.render('review',{data})
+        })
+        .catch((err=>{
+            res.send(err)
+        }))
+    }
+
+    static reviewPost(req,res){
+        UserBook.create({
+            UserId:req.session.userId,
+            BookId:req.params.id,
+            review:req.body.review
+        })
+        .then(data=>{
+            // res.send(req.session)
+            res.redirect('/book')
+        })
+        .catch((err=>{
             res.send(err)
         }))
     }

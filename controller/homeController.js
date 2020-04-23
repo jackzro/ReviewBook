@@ -41,7 +41,6 @@ class HomeController{
             }else {
                 if(bcrypt.compareSync(req.body.password,user.password)){
                     req.session.userId=user.id
-                    // res.send(req.session)
                     res.redirect('/user')
                 }else{ 
                     res.send('Username or password is wrong')
@@ -51,6 +50,14 @@ class HomeController{
             res.send(err)
         }))
     }
+
+    static logout(req,res){
+        req.session.destroy(function(err) {
+            // cannot access session here
+        })
+        res.redirect('/')
+    }
+
 }
 
 module.exports=HomeController

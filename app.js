@@ -8,10 +8,13 @@ app.set('view engine','ejs')
 app.use (express.urlencoded({extended:true}))
 
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'treehouse loves you',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { 
+      secure: false,
+      maxAge:6e12
+    }
   }))
 
 const router=require('./routers')
