@@ -1,0 +1,31 @@
+<%- include('./partial/header')%>
+
+<div class="mt-5">
+    <h1>Register</h1>
+<form action="/register" method="POST">
+    <div class="form-group">
+        <label for="exampleInputPassword1">Title</label>
+        <input type="text" class="form-control" name="title">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Writer</label>
+        <input type="text" class="form-control" name="writer">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Publisher</label>
+        <input type="email" class="form-control" name="publisher">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Price</label>
+        <input type="number" class="form-control" name="price">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Released Year</label>
+        <input type="number" class="form-control" name="releasedyear">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</body>
+<%- include('./partial/footer')%>
+    
