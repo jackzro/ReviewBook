@@ -3,7 +3,7 @@ const {User,Book,UserBook}=require('../models')
 
 class UserController{
     static show(req,res){
-        User.findAll()
+        User.All()
         .then((data=>{
             res.render('usertable',{data})
         })).catch((err=>{
@@ -12,7 +12,6 @@ class UserController{
     }
 
     static seereview(req,res){
-        console.log(req.params.id)
         User.findOne({
             where:{
                 id:Number(req.params.id)
@@ -20,7 +19,6 @@ class UserController{
             include:[{model:Book}]
         })
         .then(data=>{
-            // res.send(data)
             res.render('reviewtable',{data})
         }).catch((err=>{
             res.send(err)
@@ -28,14 +26,8 @@ class UserController{
     }
 
     static delete(req,res){
-        UserBook.destroy({
-            where:{
-                BookId:Number(req.params.book),
-                UserId:Number(req.params.user)
-            }
-        })
+        UserBook.Delete(req.params)
         .then(data=>{
-            // res.send(data)
             res.redirect(`/user/seereview/${req.params.user}`)
         }).catch((err=>{
             res.send(err)

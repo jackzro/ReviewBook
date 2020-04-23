@@ -3,7 +3,16 @@ module.exports = (sequelize, DataTypes) => {
   const Sequelize=sequelize.Sequelize
   const Model=Sequelize.Model
 
-  class UserBook extends Model{}
+  class UserBook extends Model{
+    static Delete(req){
+      return UserBook.destroy({
+        where:{
+            BookId:Number(req.book),
+            UserId:Number(req.user)
+        }
+      })
+    }
+  }
 
   UserBook.init({
     UserId: DataTypes.INTEGER,

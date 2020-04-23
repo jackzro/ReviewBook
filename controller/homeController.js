@@ -8,7 +8,8 @@ class HomeController{
     }
 
     static register(req,res){
-        res.render('register')
+        const error=req.query.error
+        res.render('register',{error})
     }
     
     static registerPost(req,res){
@@ -22,7 +23,12 @@ class HomeController{
         .then(()=>{
             res.redirect('/')
         }).catch((err=>{
-            res.send(err)
+            const error=[]
+            for (let i = 0; i < err.errors.length; i++) {
+                error.push(err.errors[i].message)
+                
+            }
+            res.redirect(`/register?error=${error}`)
         }))
     }
 

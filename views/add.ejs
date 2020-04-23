@@ -1,5 +1,9 @@
 <%- include('./partial/header')%>
-
+<div>
+<% if(error) { %>
+<p><%= error%></p>
+<% } %>
+</div>
 <div class="mt-5">
 <form action="/book/add" method="POST">
     <div class="form-group">

@@ -13,22 +13,21 @@ class BookController{
     }
 
     static addForm(req,res){
-        res.render('add')
+        const error=req.query.error
+        res.render('add',{error})
     }
 
     static add(req,res){
-        console.log(req.body)
-        Book.create({
-            title:req.body.title,
-            writer:req.body.writer,
-            publisher:req.body.publisher,
-            price:req.body.price,
-            released_year:req.body.releasedyear
-        })
+        Book.Add(req.body)
         .then((data=>{
             res.redirect('/book')
         })).catch((err=>{
-            res.send(err)
+            const error=[]
+            for (let i = 0; i < err.errors.length; i++) {
+                error.push(err.errors[i].message)
+                
+            }
+            res.redirect(`/book/add?error=${error}`)
         }))
     }
 
